@@ -1,36 +1,30 @@
     #include "Fixed.hpp"
-    #include <iostream>
     #include <ostream>
     
     Fixed::Fixed()
     {
         _value = 0;
-        std::cout << "Default ctor called" << std::endl;
     }
 
     Fixed::Fixed(const Fixed& orig)
     {
         _value = orig._value;
-        std::cout << "Copy ctor called" << std::endl;
     }
 
     Fixed::Fixed(const int num)
     {
         _value = num << FRAC_BIT_COUNT;
-        std::cout << "Int ctor called" << std::endl;
     }
 
     Fixed::Fixed(const float num)
     {
         _value = roundf(num * (1 << FRAC_BIT_COUNT));
-        std::cout << "Float ctor called" << std::endl;
     }
 
     Fixed& Fixed::operator=(const Fixed& orig)
     {
         if (this != &orig)
             _value = orig._value;
-        std::cout << "Assignment operator called" << std::endl;
         return *this;
     }
 
@@ -63,12 +57,14 @@
     {
         Fixed res;
         res._value = _value + orig._value;
+        return res;
     }
 
     Fixed Fixed::operator-(const Fixed &orig)
     {
         Fixed res;
         res._value = _value - orig._value;
+        return res;
     }
 
     Fixed Fixed::operator*(const Fixed &orig)
@@ -90,30 +86,45 @@
 
     Fixed& Fixed::operator++()
     {
-        _value += 1;
+        _value++;
         return *this;
     }
 
     Fixed& Fixed::operator--()
     {
-        _value -= 1;
+        _value--;
         return *this;
     }
 
-    Fixed::~Fixed()
+    Fixed Fixed::operator++(int)
     {
-        std::cout << "Destructor called" << std::endl;
+        Fixed temp(*this);
+        _value++;
+        return temp;
     }
+
+    Fixed Fixed::operator--(int)
+    {
+        Fixed temp(*this);
+        _value--;
+        return temp;
+    }
+
+    std::ostream& operator<<(std::ostream& os, Fixed const& value)
+    {
+        os << value.toFloat();
+        return os;
+    }
+
+    Fixed::~Fixed() = default;
 
     int Fixed::getRawBits() const
     {
-        std::cout << "Getter called" << std::endl;
         return _value;
     }
 
     void Fixed::setRawBits(const int raw)
     {
-        std::cout << "Setter called" << std::endl;
         _value = raw;
     }
 
@@ -127,8 +138,22 @@
         return (float)_value / (1 << FRAC_BIT_COUNT);
     }
 
-    std::ostream& operator<<(std::ostream& os, Fixed const& value)
+    Fixed& Fixed::min(Fixed& a, Fixed& b)
     {
-        os << value.toFloat();
-        return os;
+        return (a < b ? a : b);
+    }
+
+    Fixed const& Fixed::min(Fixed const& a, Fixed const& b)
+    {
+        return (a < b ? a : b);
+    }
+
+    Fixed& Fixed::max(Fixed& a, Fixed& b)
+    {
+        return (a > b ? a : b);
+    }
+
+    Fixed const& Fixed::max(Fixed const& a, Fixed const& b)
+    {
+        return (a > b ? a : b);
     }
