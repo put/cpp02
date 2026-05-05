@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++23 -Wall -Wextra -Werror -g
+CXXFLAGS := -std=c++11 -Wall -Wextra -Werror
 
 NAME := ex02
 FILES := Fixed.cpp Fixed.hpp main.cpp

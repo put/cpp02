@@ -1,4 +1,5 @@
     #include "Fixed.hpp"
+    #include <cmath>
     #include <ostream>
     
     Fixed::Fixed()
