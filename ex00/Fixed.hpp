@@ -1,3 +1,5 @@
+#pragma once
+
 class Fixed {
     private:
     static const int FRAC_BIT_COUNT = 8;

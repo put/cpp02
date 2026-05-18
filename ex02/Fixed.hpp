@@ -1,5 +1,4 @@
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#pragma once
 #include <ostream>
 
 class Fixed {
@@ -35,6 +34,7 @@ class Fixed {
     static Fixed& max(Fixed& a, Fixed& b);
     static Fixed const& min(Fixed const& a, Fixed const& b);
     static Fixed& min(Fixed& a, Fixed& b);
-    friend std::ostream& operator<<(std::ostream& os, Fixed const& value);
 };
-#endif
+
+// Has to be prototyped outside of the class in order to not require the forbidden "friend" keyword
+std::ostream& operator<<(std::ostream& os, Fixed const& value);

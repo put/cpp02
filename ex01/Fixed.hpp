@@ -1,5 +1,4 @@
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#pragma once
 #include <ostream>
 
 class Fixed {
@@ -17,6 +16,7 @@ class Fixed {
     void setRawBits(const int raw);
     int toInt() const;
     float toFloat() const;
-    friend std::ostream& operator<<(std::ostream& os, Fixed const& value);
 };
-#endif
+
+// Has to be prototyped outside of the class in order to not require the forbidden "friend" keyword
+std::ostream& operator<<(std::ostream& os, Fixed const& value);
