@@ -36,7 +36,7 @@
 
 	bool Fixed::operator<=(const Fixed& orig) const
 	{
-		return _value >= orig.getRawBits();
+		return _value <= orig.getRawBits();
 	}
 
     bool Fixed::operator>=(const Fixed &orig) const
