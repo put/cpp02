@@ -23,6 +23,11 @@ int main( void ) {
 	std::cout << (Fixed(3.14f) == Fixed(3.14f)) << std::endl; // compares the two Fixed values, they are exactly equal so it should output 1 (true)
 	std::cout << (Fixed(3.141f) == Fixed(3.14f)) << std::endl; // compares again with a value in which the difference is smaller than 1 increment/decrement step, so should still output 1 (true)
 	std::cout << (Fixed(3.145f) == Fixed(3.14f)) << std::endl; // compares once more with a difference bigger than a step, so should output 0 (false)
+	std::cout << (Fixed(3.9f) <= Fixed(3.14f)) << std::endl; // false
+	std::cout << (Fixed(3.9f) < Fixed(3.14f)) << std::endl; // false
+	std::cout << (Fixed(3.9f) > Fixed(3.14f)) << std::endl; // true
+	std::cout << (Fixed(3.9f) >= Fixed(3.14f)) << std::endl; // true
+	std::cout << (Fixed(3.9f) != Fixed(3.14f)) << std::endl; // true
 	std::cout << Fixed((4.55f)).toFloat() << std::endl; // testing toFloat() function, should output 4.55078
     return 0;
 }
